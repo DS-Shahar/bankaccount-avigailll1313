@@ -1,0 +1,77 @@
+package avigail;
+
+public class BankAccount {
+    private String owner;
+    private double balance;
+    private double minBalance;
+
+    // פונקציה ליצירת חשבון חדש
+    public BankAccount(String owner, double initialBalance, double minBalance) {
+        this.owner = owner;
+        this.balance = initialBalance;
+        this.minBalance = minBalance;
+    }
+
+    // פעולות גישה ל-owner
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    // הפקדה
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("הופקדו " + amount + " שח לחשבון של " + owner);
+        }
+    }
+
+    // משיכה
+    public void withdraw(double amount) {
+        if (amount > 0 && balance - amount >= minBalance) {
+            balance -= amount;
+            System.out.println("נמשכו " + amount + " שח מחשבון של " + owner);
+        } else if (amount > balance) {
+            System.out.println("אין מספיק כסף בחשבון");
+        } else {
+            System.out.println("סכום המשיכה חורג מהמסגרת");
+        }
+    }
+
+    // העברה בין חשבונות
+    public void transfer(BankAccount otherAccount, double amount) {
+        if (amount > 0 && balance - amount >= minBalance) {
+            balance -= amount;
+            otherAccount.deposit(amount);
+            System.out.println(amount + " הועברו" + owner + " ל-" + otherAccount.getOwner());
+        } else {
+            System.out.println("העברה נכשלה. אין מספיק כסף או חרגת מהמסגרת.");
+        }
+    }
+
+    // הצגת פרטי החשבון
+    public String toString() {
+        return "חשבון של " + owner + ", יתרה: " + balance + " שח";
+    }
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount lisaAccount = new BankAccount("Lisa", 1000, -1000);
+        BankAccount bobAccount = new BankAccount("Bob", 1000, -1000);
+
+        System.out.println(lisaAccount);
+        System.out.println(bobAccount);
+
+        lisaAccount.transfer(bobAccount, 500);
+
+        System.out.println(lisaAccount);
+        System.out.println(bobAccount);
+        
+        lisaAccount.transfer(bobAccount, 1600);
+
+        System.out.println(lisaAccount);
+        System.out.println(bobAccount);
+        }}}
