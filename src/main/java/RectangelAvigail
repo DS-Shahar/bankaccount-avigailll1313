@@ -1,0 +1,58 @@
+package avigail;
+import java.util.Scanner;
+public class Rectangel {
+    private int length;
+    private int width;
+
+    // פעולה בונה
+    public Rectangel(int length, int width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    // ציור על המסך
+    public void draw( int x, int y) {
+    	String wide= " ";
+        for (int i=0; i<x; i++) {
+        	wide= wide + "*";}
+        for (int i=0; i<y; i++) {
+        	System.out.println(wide);   	
+    }}
+
+    // חישוב השטח
+    public int calcArea() {
+        return length * width;
+    }
+
+    // חישוב ההיקף
+    public int calcPerimeter() {
+        return 2 * (length + width);
+    }
+
+    // הכפלת רוחב ואורך ב-factor
+    public void scale(int factor) {
+        length *= factor;
+        width *= factor;
+    }
+
+    // המחזירה מחרוזת עם ערכי התכונות
+    public String toString() {
+        return "Rectangle: length=" + length + ", width=" + width;
+    }
+
+    public static void main(String[] args) {
+        // קבלת מידות מהמשתמש
+         System.out.println("Enter length of rectangle 1:");
+         int length1 = reader.nextInt();
+         System.out.println("Enter width of rectangle 1:");
+         int width1 =reader.nextInt();
+         System.out.println("Enter length of rectangle 2:");
+         int length2 = reader.nextInt();
+         System.out.println("Enter width of rectangle 2:");
+         int width2 =reader.nextInt();
+        
+
+        Rectangel rect1 = new Rectangel(length1, width1);
+        Rectangel rect2 = new Rectangel(length2, width2);
+
+    }}
